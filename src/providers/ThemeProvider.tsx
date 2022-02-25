@@ -4,7 +4,7 @@ import { ThemeContext, ThemeOptions } from '../contexts/ThemeContext';
 import { darkTheme, lightTheme } from '../styles/theme';
 
 export const ThemeProvider: React.FC = (props) => {
-  const [theme, setTheme] = useState<ThemeOptions>('dark');
+  const [theme, setTheme] = useState<ThemeOptions>('light');
 
   const selectedTheme = theme === 'light' ? lightTheme : darkTheme;
 
