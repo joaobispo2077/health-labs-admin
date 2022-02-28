@@ -1,6 +1,6 @@
 import { ListGuesser } from "react-admin";
-import { ReactAdminFCList } from "../../@types/react-admin";
-import { useMediaQuery } from "../hooks/useMediaQuery";
+import { ReactAdminFCList } from "@src/@types/react-admin";
+import { useMediaQuery } from "@src/hooks/useMediaQuery";
 import { ExamModel } from "./Exam.model";
 import { MobileExamList } from "./MobileExamList";
 
