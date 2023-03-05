@@ -35,6 +35,11 @@ module.exports = {
     react: {
       version: 'detect',
     },
+    "import/resolver": {
+      "node": {
+        "typescript": {}
+      }
+    },
   },
   rules: {
     'import/order': [
