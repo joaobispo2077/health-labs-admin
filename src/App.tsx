@@ -1,27 +1,13 @@
-import { Admin, Resource } from 'react-admin';
-import simpleRestProvider from 'ra-data-simple-rest';
-import ExamIcon from '@material-ui/icons/Book';
+import { AdminContext } from 'react-admin';
 
-import { ExamList } from './components/Exams/ExamList';
-import { ExamCreateForm } from './components/Exams/ExamCreateForm';
-import { ExamEditForm } from './components/Exams/ExamEditForm';
-import { ExamDetails } from './components/Exams/ExamDetails';
-
-const dataProvider = simpleRestProvider('http://localhost:3333');
+import { dataProvider } from './services/dataProvider';
+import { AsyncResources } from './components/AsyncResources';
 
 const App = () => {
   return (
-    <Admin dataProvider={dataProvider}>
-      <Resource
-        name="exams"
-        list={ExamList}
-        create={ExamCreateForm}
-        edit={ExamEditForm}
-        show={ExamDetails}
-        icon={ExamIcon}
-        options={{ label: 'Exames' }}
-      />
-    </Admin>
+    <AdminContext dataProvider={dataProvider}>
+      <AsyncResources />
+    </AdminContext>
   );
 };
 
