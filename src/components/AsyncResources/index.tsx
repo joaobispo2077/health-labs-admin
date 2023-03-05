@@ -2,6 +2,7 @@ import { customRoutes } from '@src/customRoutes';
 import { ExamsResources } from '@src/pages/Exams';
 import { useEffect, useCallback, useState } from 'react';
 import { AdminUI, Resource, ResourceProps } from 'react-admin';
+import { Menu } from '../Menu';
 
 async function loadResources() {
   await new Promise((resolve) => setTimeout(resolve, 3000)); // emulate async call
@@ -21,7 +22,7 @@ export function AsyncResources() {
   }, []);
 
   return (
-    <AdminUI disableTelemetry customRoutes={customRoutes}>
+    <AdminUI disableTelemetry menu={Menu} customRoutes={customRoutes}>
       {resources.map((resource) => (
         <Resource key={resource.name} {...resource} />
       ))}
