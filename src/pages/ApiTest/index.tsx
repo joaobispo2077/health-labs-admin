@@ -4,18 +4,8 @@ import CardContent from '@material-ui/core/CardContent';
 import { Title, useDataProvider } from 'react-admin';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { TextField, Button } from '@material-ui/core';
-import JSONInput from 'react-json-editor-ajrm';
 import Editor from '@monaco-editor/react';
 import { isJsonString } from '@src/utils/isJsonString';
-
-type JsonEditorInput = {
-  error: boolean;
-  jsObject: Record<string, unknown>;
-  json: string;
-  lines: number;
-  markupText: string;
-  plainText: string;
-};
 
 const ApiTest = () => {
   const dataProvider = useDataProvider();
