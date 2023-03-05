@@ -1,9 +1,9 @@
 import { ResourceProps } from 'react-admin';
 import ExamIcon from '@material-ui/icons/Book';
-import { ExamList } from '@src/components/Exams/ExamList';
-import { ExamCreateForm } from '@src/components/Exams/ExamCreateForm';
-import { ExamEditForm } from '@src/components/Exams/ExamEditForm';
-import { ExamDetails } from '@src/components/Exams/ExamDetails';
+import { ExamList } from '@src/pages/Exams/ExamList';
+import { ExamCreateForm } from '@src/pages/Exams/ExamCreateForm';
+import { ExamEditForm } from '@src/pages/Exams/ExamEditForm';
+import { ExamDetails } from '@src/pages/Exams/ExamDetails';
 
 export const ExamsResources: ResourceProps = {
   name: 'exams',
