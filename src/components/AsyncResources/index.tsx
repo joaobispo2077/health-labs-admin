@@ -1,3 +1,4 @@
+import { customRoutes } from '@src/customRoutes';
 import { ExamsResources } from '@src/pages/Exams';
 import { useEffect, useCallback, useState } from 'react';
 import { AdminUI, Resource, ResourceProps } from 'react-admin';
@@ -20,7 +21,7 @@ export function AsyncResources() {
   }, []);
 
   return (
-    <AdminUI>
+    <AdminUI disableTelemetry customRoutes={customRoutes}>
       {resources.map((resource) => (
         <Resource key={resource.name} {...resource} />
       ))}
