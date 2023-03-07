@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import { Title, useDataProvider } from 'react-admin';
+import { Title, useDataProvider, useNotify } from 'react-admin';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, Box, Typography } from '@material-ui/core';
 import Editor from '@monaco-editor/react';
 import { isJsonString } from '@src/utils/isJsonString';
+import { useStyles } from './styles';
 
 const ApiTest = () => {
+  const classes = useStyles();
+  const notify = useNotify();
   const dataProvider = useDataProvider();
 
   const requestTypes = ['GET', 'POST', 'PUT', 'DELETE'];
@@ -22,6 +25,7 @@ const ApiTest = () => {
 
   const [statusResponse, setStatusResponse] = useState<string>();
   const [bodyResponse, setBodyResponse] = useState<Record<string, unknown>>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSelectedRequestTypeChange = (
     event: React.ChangeEvent<{}>,
@@ -48,6 +52,7 @@ const ApiTest = () => {
   };
 
   const handleSendRequest = async () => {
+    setIsLoading(true);
     try {
       if (!selectedRequestType || !selectedUrl) return;
 
@@ -67,64 +72,93 @@ const ApiTest = () => {
       setBodyResponse(response.data);
     } catch (error: any) {
       console.log('error', error.message);
+      // notify(error.message, 'error');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <Card>
       <Title title="ApiTest" />
-      <CardContent>
-        <Autocomplete
-          id="request-type"
-          filterSelectedOptions
-          autoComplete
-          noOptionsText="No options"
-          loadingText="Loading..."
-          getOptionLabel={(option) => option}
-          options={requestTypes}
-          value={selectedRequestType}
-          onChange={handleSelectedRequestTypeChange}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              variant="outlined"
-              label="Request Type"
-              placeholder="Request Type"
+      <CardContent className={classes.container}>
+        <Box display={'flex'} width={'100%'} gridGap={'5px'}>
+          <Box width={'10rem'}>
+            <Autocomplete
+              id="request-type"
+              filterSelectedOptions
+              autoComplete
+              noOptionsText="No options"
+              loadingText="Loading..."
+              getOptionLabel={(option) => option}
+              options={requestTypes}
+              value={selectedRequestType}
+              onChange={handleSelectedRequestTypeChange}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  label="Request Type"
+                  placeholder="Request Type"
+                />
+              )}
             />
-          )}
-        />
-        <Autocomplete
-          id="request-url"
-          filterSelectedOptions
-          autoComplete
-          noOptionsText="No options"
-          loadingText="Loading..."
-          getOptionLabel={(option) => option}
-          options={urlOptions}
-          value={selectedUrl}
-          onChange={handleSelectedUrlChange}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              variant="outlined"
-              label="Request Url"
-              placeholder="Request Url"
+          </Box>
+          <Box width={'40rem'}>
+            <Autocomplete
+              id="request-url"
+              filterSelectedOptions
+              autoComplete
+              noOptionsText="No options"
+              loadingText="Loading..."
+              getOptionLabel={(option) => option}
+              options={urlOptions}
+              value={selectedUrl}
+              onChange={handleSelectedUrlChange}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  label="Request Url"
+                  placeholder="Request Url"
+                />
+              )}
             />
-          )}
-        />
-        <Editor
-          height="8rem"
-          language="json"
-          value={jsonBody}
-          onChange={handleChangeJsonBody}
-        />
-        <Button variant="contained" color="primary" onClick={handleSendRequest}>
-          Send Request
-        </Button>
+          </Box>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleSendRequest}
+            disabled={isLoading}
+            size="large"
+          >
+            Executar
+          </Button>
+        </Box>
+        <Box marginTop={'1rem'} gridGap={'1rem'}>
+          <Typography variant="h6">Parâmetros de execução</Typography>
+          <Editor
+            height="8rem"
+            language="json"
+            value={jsonBody}
+            onChange={handleChangeJsonBody}
+          />
+        </Box>
 
-        <h2>Response</h2>
-        <p>Status: {statusResponse}</p>
-        <p>Body: {JSON.stringify(bodyResponse)}</p>
+        {statusResponse && (
+          <>
+            <Typography variant="h5">Resultado</Typography>
+            <Box marginTop={'1rem'} gridGap={'1rem'}>
+              <Typography variant="h6">Status: {statusResponse}</Typography>
+              <Typography variant="h6">Parâmetros do resultado</Typography>
+              <Editor
+                height="8rem"
+                language="json"
+                value={JSON.stringify(bodyResponse)}
+              />
+            </Box>
+          </>
+        )}
       </CardContent>
     </Card>
   );
