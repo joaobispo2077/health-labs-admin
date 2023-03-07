@@ -1,5 +1,5 @@
 import { ResourceProps } from 'react-admin';
-import ExamIcon from '@material-ui/icons/Book';
+import ExamIcon from '@mui/icons-material/Book';
 import { ExamList } from '@src/pages/Exams/ExamList';
 import { ExamCreateForm } from '@src/pages/Exams/ExamCreateForm';
 import { ExamEditForm } from '@src/pages/Exams/ExamEditForm';

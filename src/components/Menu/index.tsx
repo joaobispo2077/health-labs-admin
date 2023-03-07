@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { createElement } from 'react';
 import { useSelector } from 'react-redux';
-import { useMediaQuery } from '@material-ui/core';
+import { useMediaQuery } from '@mui/material';
 import { MenuItemLink, getResources } from 'react-admin';
 import { withRouter } from 'react-router-dom';
-import LabelIcon from '@material-ui/icons/Label';
+import LabelIcon from '@mui/icons-material/Label';
 import { ReactAdminFunctionalComponent } from '@src/@types/react-admin';
 
 export type MenuRawProps = {
@@ -16,7 +16,7 @@ const MenuRaw: ReactAdminFunctionalComponent<MenuRawProps> = ({
   onMenuClick,
   logout,
 }: MenuRawProps) => {
-  const isXSmall = useMediaQuery((theme: any) => theme.breakpoints.down('xs'));
+  const isXSmall = useMediaQuery((theme: any) => theme.breakpoints.down('sm'));
   const open = useSelector((state: any) => state.admin.ui.sidebarOpen);
   const resources = useSelector(getResources);
   return (

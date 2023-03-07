@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import { Title, useDataProvider, useNotify } from 'react-admin';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { TextField, Button, Box, Typography } from '@material-ui/core';
+import Autocomplete from '@mui/material/Autocomplete';
+import { TextField, Button, Box, Typography } from '@mui/material';
 import Editor from '@monaco-editor/react';
 import { isJsonString } from '@src/utils/isJsonString';
 import { useStyles } from './styles';
 // Migrate Date Picker component import { DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'; https://mui.com/x/react-date-pickers/getting-started/
 // Migrate JSS to to emotion https://mui.com/material-ui/migration/migrating-from-jss/
+// Adapt all paths to mui npx @mui/codemod v5.0.0/preset-safe
 
 const ApiTest = () => {
   const classes = useStyles();
@@ -84,7 +85,7 @@ const ApiTest = () => {
     <Card>
       <Title title="ApiTest" />
       <CardContent className={classes.container}>
-        <Box display={'flex'} width={'100%'} gridGap={'5px'}>
+        <Box display={'flex'} width={'100%'} gap={'5px'}>
           <Box width={'10rem'}>
             <Autocomplete
               id="request-type"
@@ -137,7 +138,7 @@ const ApiTest = () => {
             Executar
           </Button>
         </Box>
-        <Box marginTop={'1rem'} gridGap={'1rem'}>
+        <Box marginTop={'1rem'} gap={'1rem'}>
           <Typography variant="h6">Parâmetros de execução</Typography>
           <Editor
             height="8rem"
@@ -150,7 +151,7 @@ const ApiTest = () => {
         {statusResponse && (
           <>
             <Typography variant="h5">Resultado</Typography>
-            <Box marginTop={'1rem'} gridGap={'1rem'}>
+            <Box marginTop={'1rem'} gap={'1rem'}>
               <Typography variant="h6">Status: {statusResponse}</Typography>
               <Typography variant="h6">Parâmetros do resultado</Typography>
               <Editor
