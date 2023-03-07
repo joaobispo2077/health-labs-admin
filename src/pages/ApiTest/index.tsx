@@ -10,6 +10,9 @@ import { useStyles } from './styles';
 // Migrate Date Picker component import { DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'; https://mui.com/x/react-date-pickers/getting-started/
 // Migrate JSS to to emotion https://mui.com/material-ui/migration/migrating-from-jss/
 // Adapt all paths to mui npx @mui/codemod v5.0.0/preset-safe
+// npm uninstall @material-ui/*
+// npm i ra-data-simple-rest@latest
+// npm i react-admin@latest
 
 const ApiTest = () => {
   const classes = useStyles();

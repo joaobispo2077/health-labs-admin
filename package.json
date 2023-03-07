@@ -24,9 +24,9 @@
     "@mui/styles": "^5.11.12",
     "@mui/x-date-pickers": "^6.0.0",
     "monaco-editor": "^0.36.1",
-    "ra-data-simple-rest": "^3.19.10",
+    "ra-data-simple-rest": "^4.8.2",
     "react": "^17.0.2",
-    "react-admin": "^3.19.10",
+    "react-admin": "^4.8.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {

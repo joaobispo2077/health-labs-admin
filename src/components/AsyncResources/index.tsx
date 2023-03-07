@@ -1,8 +1,9 @@
-import { customRoutes } from '@src/customRoutes';
 import { ExamsResources } from '@src/pages/Exams';
 import { useEffect, useCallback, useState } from 'react';
-import { AdminUI, Resource, ResourceProps } from 'react-admin';
+import { AdminUI, CustomRoutes, Resource, ResourceProps } from 'react-admin';
 import { Menu } from '../Menu';
+import { Route } from 'react-router-dom';
+import ApiTest from '@src/pages/ApiTest';
 
 async function loadResources() {
   await new Promise((resolve) => setTimeout(resolve, 3000)); // emulate async call
@@ -22,10 +23,13 @@ export function AsyncResources() {
   }, []);
 
   return (
-    <AdminUI disableTelemetry menu={Menu} customRoutes={customRoutes}>
+    <AdminUI disableTelemetry menu={Menu}>
       {resources.map((resource) => (
         <Resource key={resource.name} {...resource} />
       ))}
+      <CustomRoutes>
+        <Route path="/api-test" element={<ApiTest />} />
+      </CustomRoutes>
     </AdminUI>
   );
 }
