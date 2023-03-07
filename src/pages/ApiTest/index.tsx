@@ -7,6 +7,8 @@ import { TextField, Button, Box, Typography } from '@material-ui/core';
 import Editor from '@monaco-editor/react';
 import { isJsonString } from '@src/utils/isJsonString';
 import { useStyles } from './styles';
+// Migrate Date Picker component import { DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'; https://mui.com/x/react-date-pickers/getting-started/
+// Migrate JSS to to emotion https://mui.com/material-ui/migration/migrating-from-jss/
 
 const ApiTest = () => {
   const classes = useStyles();
